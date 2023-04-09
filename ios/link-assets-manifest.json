@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Arellia.ttf",
+      "sha1": "596c33caf10b6d271840f0a3081af2f4ce4b7fa9"
+    },
+    {
+      "path": "assets/fonts/Paladise Script.otf",
+      "sha1": "4fcc82f38144faf028d3a1e12be56de52d3fff88"
+    },
+    {
+      "path": "assets/fonts/Stentiga.ttf",
+      "sha1": "d4c0cc2f47e64ecac9a4c5a5944e1c2a7270b460"
+    },
+    {
+      "path": "assets/fonts/Wabene.ttf",
+      "sha1": "cd1f36296742042a0a376881bb3cda61eebe887f"
+    }
+  ]
+}
