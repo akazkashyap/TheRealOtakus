@@ -63,6 +63,25 @@ function CustomDrawerContent(props) {
     return {backgroundColor};
   });
 
+  const getDrawerItemLabel = item => {
+    return () => (
+      <DrawerItemWrapper>
+        <DrawerItemLabel>{item.label}</DrawerItemLabel>
+        {item.label === 'Chat' ? <OnlineStatus /> : null}
+      </DrawerItemWrapper>
+    );
+  };
+
+  const getDrawerItemIcons = item => {
+    return ({focused, color, size}) => (
+      <Icon
+        name={focused ? item.icon : item.outlineIcon}
+        size={size}
+        color={theme.drawer.ICON_COLOR}
+      />
+    );
+  };
+
   return (
     <DrawerBackground style={[rDrawerbgStyle]}>
       <SafeArea>
@@ -88,19 +107,8 @@ function CustomDrawerContent(props) {
                 key={index}
                 focused={isFocused(index)}
                 activeBackgroundColor={theme.drawer.ACTIVE_COLOR}
-                icon={({focused, color, size}) => (
-                  <Icon
-                    name={focused ? item.icon : item.outlineIcon}
-                    size={size}
-                    color={theme.drawer.ICON_COLOR}
-                  />
-                )}
-                label={() => (
-                  <DrawerItemWrapper>
-                    <DrawerItemLabel>{item.label}</DrawerItemLabel>
-                    {item.label === 'Chat' ? <OnlineStatus /> : null}
-                  </DrawerItemWrapper>
-                )}
+                icon={getDrawerItemIcons(item, theme)}
+                label={getDrawerItemLabel(item)}
                 onPress={() => props.navigation.navigate(item.route)}
               />
             );
