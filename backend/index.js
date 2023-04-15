@@ -35,6 +35,7 @@ io.on('connection', socket => {
   });
 
   socket.on('send-message', message => {
+    console.log('broadcasting to ', roomName, message);
     socket.broadcast.to(roomName).emit('new-message', message);
     console.log('recieved to server');
   });

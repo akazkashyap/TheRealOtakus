@@ -8,6 +8,7 @@ import {
   getAnimeInfo,
   setAnimeDetailsLoading,
 } from '../actions/animeDetailAction';
+import ShimmerAnimeDetail from '../components/AnimeDetail/ShimmerAnimeDetail';
 
 function AnimeScreen({route}) {
   const {source} = route.params;
@@ -27,8 +28,12 @@ function AnimeScreen({route}) {
 
   return (
     <Container>
-      {animeDetails.loading || animeDetails.error.length > 0 ? (
-        <TryAgain reload={fetchAnime} loading={animeDetails.loading} />
+      {animeDetails.loading ? (
+        <ShimmerAnimeDetail />
+      ) : animeDetails.error.length > 0 ? (
+        <Wrapper>
+          <TryAgain reload={fetchAnime} loading={animeDetails.loading} />
+        </Wrapper>
       ) : (
         <AnimeDetail />
       )}
@@ -37,6 +42,12 @@ function AnimeScreen({route}) {
 }
 
 const Container = styled.View`
+  flex: 1;
+  height: 100%;
+  width: 100%;
+`;
+
+const Wrapper = styled.View`
   flex: 1;
   justify-content: center;
 `;

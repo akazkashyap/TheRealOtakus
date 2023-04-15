@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import Loader from '../components/utils/Loader';
 import VideoQuality from '../components/VideoPlayer/VideoQuality';
 import TryAgain from '../components/utils/TryAgain';
 import styled from 'styled-components/native';

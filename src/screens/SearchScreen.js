@@ -2,10 +2,10 @@ import React from 'react';
 import SearchAnimeList from '../components/SearchAnimeList';
 import styled from 'styled-components/native';
 import {useDispatch, useSelector} from 'react-redux';
-import Loader from '../components/utils/Loader';
 import LottieView from 'lottie-react-native';
 import TryAgain from '../components/utils/TryAgain';
 import {getSearch} from '../actions/searchAction';
+import ShimmerList from '../components/ShimmerList';
 
 function SearchScreen() {
   const searchData = useSelector(state => state.searchData);
@@ -13,7 +13,7 @@ function SearchScreen() {
   return (
     <Container>
       {searchData.loading ? (
-        <Loader />
+        <ShimmerList title="Search Results" itemsNum={12} />
       ) : searchData.error.length !== 0 ? (
         <Wrapper>
           <TryAgain

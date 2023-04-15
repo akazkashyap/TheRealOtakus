@@ -15,6 +15,7 @@ class ChatScreen extends React.Component {
       isTyping: false,
       loadMessages: false,
       online: 0,
+      id: null,
     };
   }
 
@@ -34,6 +35,10 @@ class ChatScreen extends React.Component {
     });
     socket.on('show-typing', name => this.setState({isTyping: true}));
     socket.on('hide-typing', () => this.setState({isTyping: false}));
+
+    if (this.state.id === null) {
+      getUniqueId().then(v => this.setState(p => ({id: v})));
+    }
   }
 
   componentWillUnmount() {
@@ -83,7 +88,7 @@ class ChatScreen extends React.Component {
               onInputTextChanged={this.setIsTyping}
               isTyping={this.state.isTyping}
               user={{
-                _id: getUniqueId(),
+                _id: this.state.id,
                 name: this.props.userChat.username,
                 avatar: this.props.userChat.profilePic,
               }}

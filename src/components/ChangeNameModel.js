@@ -85,6 +85,8 @@ const ChangeNameModal = ({visible, handleClose, name, setName}) => {
     <View>
       <Modal
         isVisible={visible}
+        animationIn="slideInRight"
+        animationOut="slideOutLeft"
         onBackButtonPress={handleClose}
         hideModalContentWhileAnimating
         useNativeDriver

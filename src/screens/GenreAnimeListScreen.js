@@ -3,13 +3,13 @@ import styled from 'styled-components/native';
 import TryAgain from '../components/utils/TryAgain';
 import AnimeList from '../components/AnimeList';
 import {Button} from 'react-native-paper';
-import Loader from '../components/utils/Loader';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   animeGenreListAction,
   clearGenreAnimeList,
   getNextPage,
 } from '../actions/animeGenreAction';
+import ShimmerList from '../components/ShimmerList';
 
 function GenreAnimeListScreen({route, navigation}) {
   const {item} = route.params;
@@ -43,7 +43,7 @@ function GenreAnimeListScreen({route, navigation}) {
   return (
     <Container>
       {animeGenre.loading && animeGenre.currentPage === 1 ? (
-        <Loader />
+        <ShimmerList itemsNum={12} />
       ) : animeGenre.error.length !== 0 ? (
         <TryAgain reload={fetchGenreAnimeList} loading={animeGenre.loading} />
       ) : (

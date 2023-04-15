@@ -1,17 +1,17 @@
-import {getUniqueId} from 'react-native-device-info';
-import {CHANGE_PROFILE_PIC, CHANGE_USER_NAME} from '../constants';
-import {getRandomIntInclusive} from '../utils';
+import {
+  CHANGE_PROFILE_PIC,
+  CHANGE_USER_NAME,
+  SET_INITIAL_USER_STATE,
+} from '../constants';
 
-const initialState = {
-  username: getUniqueId(),
-  profilePic: `https://randomuser.me/api/portraits/thumb/women/${getRandomIntInclusive(
-    0,
-    99,
-  )}.jpg`,
-};
-
+const initialState = {};
 export const userChatReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_INITIAL_USER_STATE:
+      return {
+        ...state,
+        ...action.payload,
+      };
     case CHANGE_USER_NAME:
       return {
         ...state,

@@ -9,6 +9,7 @@ const MenuButton = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const userChat = useSelector(state => state.userChat);
   const [name, setName] = useState(userChat.username);
+  console.log(userChat.username);
 
   const openMenu = () => setVisible(true);
 

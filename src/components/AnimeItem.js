@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Image, TouchableOpacity, Animated} from 'react-native';
+import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
@@ -9,8 +9,8 @@ function AnimeItem({anime, index, scrollY}) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const ITEM_SIZE = 65;
-  const inputRange = [-1, 0, ITEM_SIZE * index, ITEM_SIZE * (index + 4)];
-  const opacityInputRange = [-1, 0, ITEM_SIZE * index, ITEM_SIZE * (index + 3)];
+  // const inputRange = [-1, 0, ITEM_SIZE * index, ITEM_SIZE * (index + 4)];
+  // const opacityInputRange = [-1, 0, ITEM_SIZE * index, ITEM_SIZE * (index + 3)];
   // const scale = scrollY.interpolate({
   //   inputRange,
   //   outputRange: [1, 1, 1, 0.5],

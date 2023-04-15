@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import AnimeList from './AnimeList';
 import {getNextPage, getPopularAnimeList} from '../actions/animeListAction';
 import TryAgain from './utils/TryAgain';
+import {fetchInitialState} from '../actions/userChatAction';
 
 function PopularAnimeList() {
   const dispatch = useDispatch();
@@ -15,8 +16,9 @@ function PopularAnimeList() {
   );
 
   useEffect(() => {
+    dispatch(fetchInitialState());
     getAnimeList();
-  }, [selectedData.currentPage, getAnimeList]);
+  }, [selectedData.currentPage, getAnimeList, dispatch]);
 
   const loadMore = () => (
     <Button
@@ -28,10 +30,10 @@ function PopularAnimeList() {
       Load More
     </Button>
   );
+
   return (
     <Container>
-      {selectedData.loading &&
-      (selectedData.currentPage === 1 || selectedData.error.length) !== 0 ? (
+      {selectedData.error.length !== 0 ? (
         <Wrapper>
           <TryAgain reload={getAnimeList} loading={selectedData.loading} />
         </Wrapper>
@@ -40,6 +42,7 @@ function PopularAnimeList() {
           title="Popular 🔥"
           animeList={selectedData.popularAnimeList}
           footer={loadMore()}
+          isLoading={selectedData.loading}
         />
       )}
     </Container>

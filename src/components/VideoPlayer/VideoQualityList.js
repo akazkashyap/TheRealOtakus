@@ -32,13 +32,6 @@ function VideoQualityList({setPlayerVisible, setCurrentUrl, vidUrls}) {
 
 export default VideoQualityList;
 
-const styles = StyleSheet.create({
-  contentStyle: {
-    alignSelf: 'flex-start',
-    marginLeft: '10%',
-  },
-});
-
 const Title = styled.Text`
   font-size: 20px;
   color: ${Colors.blueGrey700};
