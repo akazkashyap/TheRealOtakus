@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {List} from 'react-native-paper';
+import { List } from 'react-native-paper';
 import FavouritesButton from '../FavouritesButton';
 
-function AnimeHeaderInfo({animeInfo, selectedAnime}) {
+function AnimeHeaderInfo({ animeInfo, selectedAnime }) {
   return (
     <Wrapper>
       <InfoWrapper>
-        <AnimeImage resizeMode="cover" source={{uri: selectedAnime.image}} />
+        <AnimeImage resizeMode="cover" source={{ uri: selectedAnime.image }} />
       </InfoWrapper>
       <InfoWrapper>
         <List.Item
@@ -31,6 +31,7 @@ function AnimeHeaderInfo({animeInfo, selectedAnime}) {
 
 const AnimeImage = styled.Image`
   flex: 1;
+  border-radius: 5px
 `;
 
 const Wrapper = styled.View`

@@ -1,10 +1,10 @@
-import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { ActivityIndicator, FlatList, StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import AnimeItem from './AnimeItem';
 import ShimmerList from './ShimmerList';
 
-function AnimeList({animeList, title, footer, isLoading, isError}) {
+function AnimeList({ animeList, title, loadMore, isLoading, isError }) {
   // const scrollY = React.useRef(new Animated.Value(0)).current;
 
   // if (isLoading) {
@@ -16,20 +16,25 @@ function AnimeList({animeList, title, footer, isLoading, isError}) {
       {animeList.length !== 0 && (
         <FlatList
           data={animeList}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <AnimeItem anime={item} index={index} />
           )}
-          numColumns={3}
+          numColumns={2}
           contentContainerStyle={FlatListStyles.container}
           keyExtractor={item => item.name}
           columnWrapperStyle={FlatListStyles.column}
           ListHeaderComponent={title ? <ListTitle>{title}</ListTitle> : null}
-          ListFooterComponentStyle={FlatListStyles.footer}
-          ListFooterComponent={footer}
+          onEndReachedThreshold={0.3}
+          onEndReached={loadMore}
+          ListFooterComponent={() => {
+            if (isLoading) {
+              return <ActivityIndicator size={'small'} />
+            }
+          }}
         />
       )}
-      {isLoading && <ShimmerList title={title} itemsNum={12} />}
     </Container>
+
   );
 }
 
@@ -39,9 +44,6 @@ const FlatListStyles = StyleSheet.create({
   },
   column: {
     flex: 1,
-  },
-  footer: {
-    alignSelf: 'center',
   },
 });
 

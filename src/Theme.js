@@ -4,7 +4,7 @@ export const lightTheme = {
   STATUS_BAR_BG_COLOR: 'hsl(258, 57%, 23%)',
   PRIMARY_BG_COLOR: '#fff',
   SECONDARY_BG_COLOR: '#000',
-  PRIMARY_TEXT_COLOR: '#000',
+  PRIMARY_TEXT_COLOR: '#797979',
   SECONDARY_TEXT_COLOR: '#542e79',
   TERTIARY_BG_COLOR: '#2e195e',
   NAV_COLOR: '#ececec',

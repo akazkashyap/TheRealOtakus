@@ -1,11 +1,10 @@
-import React, {useEffect, useCallback} from 'react';
-import {Button} from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import AnimeList from './AnimeList';
-import {getNextPage, getPopularAnimeList} from '../actions/animeListAction';
+import { getNextPage, getPopularAnimeList } from '../actions/animeListAction';
 import TryAgain from './utils/TryAgain';
-import {fetchInitialState} from '../actions/userChatAction';
+import { fetchInitialState } from '../actions/userChatAction';
 
 function PopularAnimeList() {
   const dispatch = useDispatch();
@@ -20,17 +19,6 @@ function PopularAnimeList() {
     getAnimeList();
   }, [selectedData.currentPage, getAnimeList, dispatch]);
 
-  const loadMore = () => (
-    <Button
-      mode="text"
-      onPress={() => dispatch(getNextPage())}
-      icon="progress-download"
-      loading={selectedData.loading}
-      disabled={selectedData.loading}>
-      Load More
-    </Button>
-  );
-
   return (
     <Container>
       {selectedData.error.length !== 0 ? (
@@ -41,8 +29,8 @@ function PopularAnimeList() {
         <AnimeList
           title="Popular 🔥"
           animeList={selectedData.popularAnimeList}
-          footer={loadMore()}
           isLoading={selectedData.loading}
+          loadMore={() => dispatch(getNextPage())}
         />
       )}
     </Container>

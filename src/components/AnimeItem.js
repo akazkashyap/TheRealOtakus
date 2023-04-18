@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import {setSelectedAnime} from '../actions/selectedAnimeAction';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setSelectedAnime } from '../actions/selectedAnimeAction';
 
-function AnimeItem({anime, index, scrollY}) {
+function AnimeItem({ anime, index, scrollY }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const ITEM_SIZE = 65;
@@ -24,7 +24,7 @@ function AnimeItem({anime, index, scrollY}) {
     <Card
       onPress={() => {
         dispatch(setSelectedAnime(anime));
-        navigation.navigate('anime', {source: anime.source});
+        navigation.navigate('anime', { source: anime.source });
       }}>
       <CardWrapper>
         <Image
@@ -34,38 +34,24 @@ function AnimeItem({anime, index, scrollY}) {
           }}
           resizeMode="cover"
         />
-        <CardContent>
-          <CardText numberOfLines={4} ellipsizeMode="tail">
-            {anime.name}
-          </CardText>
-        </CardContent>
+        <CardText numberOfLines={2} ellipsizeMode="tail">
+          {anime.name}
+        </CardText>
       </CardWrapper>
-      <BottomImage source={require('../../assets/images/app-logo.png')} />
     </Card>
   );
 }
 
 const styles = StyleSheet.create({
   image: {
-    height: 110,
-    width: 110,
+    height: 150,
+    width: 180,
   },
 });
 
-const BottomImage = styled.Image`
-  position: absolute;
-  bottom: -5px;
-  right: -3px;
-  height: 40px;
-  width: 40px;
-  opacity: 0.8;
-`;
-
 const Card = styled(TouchableOpacity)`
-  flex: 0.33;
-
+  flex: 0.50;
   justify-content: center;
-
   flex-direction: column;
   align-items: center;
   margin: 10px 0;
@@ -73,9 +59,10 @@ const Card = styled(TouchableOpacity)`
 `;
 
 const CardText = styled.Text`
-  font-size: 13px;
+  font-size: 16px;
   color: #fff;
-  width: 90px;
+  width: 130px;
+  padding : 10px 5px;
 `;
 
 const CardWrapper = styled.View`
@@ -87,8 +74,7 @@ const CardWrapper = styled.View`
   elevation: 5;
 `;
 
-const CardContent = styled.View`
-  padding: 10px 0 20px 0;
-`;
+
+
 
 export default AnimeItem;

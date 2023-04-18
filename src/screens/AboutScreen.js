@@ -1,6 +1,6 @@
 import React from 'react';
-import {Linking, Share} from 'react-native';
-import {Paragraph, Button} from 'react-native-paper';
+import { Linking, Share } from 'react-native';
+import { Paragraph, Button } from 'react-native-paper';
 import styled from 'styled-components/native';
 import VersionInfo from 'react-native-version-info';
 
@@ -38,10 +38,18 @@ function AboutScreen() {
                 message: shareMessage.message,
                 url: INFO.site_url,
               },
-              {dialogTitle: 'Share The Real Otakus Offical App'},
+              { dialogTitle: 'Share The Real Otakus Offical App' },
             )
           }>
           Share App
+        </Button>
+        <Button
+          icon="gift"
+          mode="contained"
+          onPress={() => Linking.openURL('https://paypal.me/therealotakus')}
+          style={{ margin: 10 }}
+        >
+          Donate
         </Button>
       </Wrapper>
       <Wrapper>
@@ -78,10 +86,10 @@ function AboutScreen() {
 }
 
 const VersionText = styled.Text`
-  font-size: 30px;
+  font-size: 16px;
   font-weight: 400;
   margin: 20px 0;
-  font-family: 'Stentiga';
+  font-family: 'Verdana';
   align-self: center;
   color: ${props => props.theme.SECONDARY_TEXT_COLOR};
 `;
@@ -109,7 +117,7 @@ const Wrapper = styled.View`
 
 const DescriptionText = styled(Paragraph)`
   font-size: 18px;
-  font-family: 'Stentiga';
+  font-family: 'Verdana';
   letter-spacing: 1px;
   padding: 10px 0;
 `;
