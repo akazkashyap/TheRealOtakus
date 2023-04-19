@@ -2,9 +2,10 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
-import GenreScreen from '../screens/GenreScreen';
+import SearchandGenreScreen from '../screens/SearchandGenreScreen';
 import AboutScreen from '../screens/AboutScreen';
 import ChatScreen from '../screens/ChatScreen';
+import FavouritesScreen from '../screens/FavouritesScreen';
 
 const TabNavigator = () => {
     const Tab = createBottomTabNavigator()
@@ -18,22 +19,26 @@ const TabNavigator = () => {
                     let iconName;
 
                     if (route.name === "Home") {
-                        iconName = "home"
+                        iconName = "home-sharp"
                     }
-                    else if (route.name === "Genre") {
-                        iconName = "grid"
+                    else if (route.name === "Search") {
+                        iconName = "search"
+                    }
+                    else if (route.name === "Favourites") {
+                        iconName = "heart"
                     }
                     else if (route.name === "Chat") {
-                        iconName = "chatbubbles"
+                        iconName = "chatbubbles-sharp"
                     }
                     else if (route.name === "About") {
-                        iconName = "information-circle"
+                        iconName = "information-circle-sharp"
                     }
                     size = focused ? 35 : 30;
                     return <Icon name={iconName} size={size} color={color} />;
                 },
                 tabBarInactiveTintColor: "grey",
                 tabBarActiveTintColor: "black",
+                headerShown: false,
             })}
         >
             <Tab.Screen
@@ -41,8 +46,12 @@ const TabNavigator = () => {
                 component={HomeScreen}
             />
             <Tab.Screen
-                name='Genre'
-                component={GenreScreen}
+                name='Favourites'
+                component={FavouritesScreen}
+            />
+            <Tab.Screen
+                name='Search'
+                component={SearchandGenreScreen}
             />
             <Tab.Screen
                 name='Chat'

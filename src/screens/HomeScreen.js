@@ -12,6 +12,8 @@ function HomeScreen() {
 
 const Container = styled.View`
   flex: 1;
+  padding:25px 0 0 0 ;
+
 `;
 
 export default HomeScreen;

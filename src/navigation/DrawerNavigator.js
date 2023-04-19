@@ -1,17 +1,17 @@
 import React from 'react';
 
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Colors, IconButton} from 'react-native-paper';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Colors, IconButton } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 import SearchButton from '../components/SearchButton';
 import CustomDrawerContent from './CustomDrawerContent';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
-import GenreScreen from '../screens/GenreScreen';
+import SearchandGenreScreen from '../screens/SearchandGenreScreen';
 import AboutScreen from '../screens/AboutScreen';
 import ChatScreen from '../screens/ChatScreen';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import MenuButton from '../components/utils/MenuButton';
 
 const Drawer = createDrawerNavigator();
@@ -40,9 +40,9 @@ const DrawerNavigator = () => {
       initialRouteName="home"
       screenOptions={{
         headerTintColor: '#fff',
-        headerStyle: {backgroundColor: theme.drawer.BG_COLOR},
-        headerTitleStyle: {fontFamily: 'Stentiga'},
-        drawerContentStyle: {backgroundColor: '#ffffff'},
+        headerStyle: { backgroundColor: theme.drawer.BG_COLOR },
+        headerTitleStyle: { fontFamily: 'Stentiga' },
+        drawerContentStyle: { backgroundColor: '#ffffff' },
         drawerLabelStyle: {
           color: Colors.purple900,
           fontFamily: 'Wabene',
@@ -57,7 +57,7 @@ const DrawerNavigator = () => {
           headerRight: getHeaderRightHome,
         }}
       />
-      <Drawer.Screen name="Genre" component={GenreScreen} />
+      <Drawer.Screen name="Search" component={SearchandGenreScreen} />
       <Drawer.Screen name="About" component={AboutScreen} />
       <Drawer.Screen
         name="Chat"
@@ -70,7 +70,7 @@ const DrawerNavigator = () => {
   );
 };
 
-export {DrawerNavigator};
+export { DrawerNavigator };
 
 const Wrapper = styled.View`
   flex-direction: row;

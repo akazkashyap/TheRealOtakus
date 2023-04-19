@@ -1,18 +1,19 @@
 import React from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import GenreListItem from './GenreListItem';
 
-function GenreList({genreList}) {
+function GenreList({ genreList }) {
   return (
     <Container>
       <FlatList
         data={genreList}
-        renderItem={({item}) => <GenreListItem item={item} />}
-        numColumns={4}
+        renderItem={({ item }) => <GenreListItem item={item} />}
+        numColumns={2}
         contentContainerStyle={styles.container}
         keyExtractor={item => item}
         columnWrapperStyle={styles.column}
+        showsVerticalScrollIndicator={false}
       />
     </Container>
   );

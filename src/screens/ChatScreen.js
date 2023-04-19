@@ -1,9 +1,9 @@
 import React from 'react';
-import {GiftedChat, InputToolbar} from 'react-native-gifted-chat';
-import {socket} from '../socket';
-import {getUniqueId} from 'react-native-device-info';
-import {connect} from 'react-redux';
-import {Text} from 'react-native-paper';
+import { GiftedChat, InputToolbar } from 'react-native-gifted-chat';
+import { socket } from '../socket';
+import { getUniqueId } from 'react-native-device-info';
+import { connect } from 'react-redux';
+import { ActivityIndicator, Text } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 class ChatScreen extends React.Component {
@@ -21,7 +21,7 @@ class ChatScreen extends React.Component {
 
   componentDidMount() {
     socket.emit('get-users-count');
-    socket.on('updated-users-count', num => this.setState({online: num}));
+    socket.on('updated-users-count', num => this.setState({ online: num }));
     socket.on('new-message', msg => {
       this.setState(perviousState => ({
         messages: GiftedChat.append(perviousState.messages, msg),
@@ -33,11 +33,11 @@ class ChatScreen extends React.Component {
       socket.emit('show-loader');
       socket.emit('send-message', msgs.splice(0, 15));
     });
-    socket.on('show-typing', name => this.setState({isTyping: true}));
-    socket.on('hide-typing', () => this.setState({isTyping: false}));
+    socket.on('show-typing', name => this.setState({ isTyping: true }));
+    socket.on('hide-typing', () => this.setState({ isTyping: false }));
 
     if (this.state.id === null) {
-      getUniqueId().then(v => this.setState(p => ({id: v})));
+      getUniqueId().then(v => this.setState(p => ({ id: v })));
     }
   }
 
@@ -56,8 +56,8 @@ class ChatScreen extends React.Component {
 
   loadEarlier = () => {
     if (socket.connected && this.online > 1) {
-      this.setState({loadMessages: true, messages: []});
-      socket.emit('get-history', () => this.setState({loadMessages: false}));
+      this.setState({ loadMessages: true, messages: [] });
+      socket.emit('get-history', () => this.setState({ loadMessages: false }));
     }
   };
 
@@ -68,14 +68,19 @@ class ChatScreen extends React.Component {
   };
 
   renderInputToolbar = props => {
-    return <InputToolbar {...props} textInputStyle={{color: '#000'}} />;
+    return <InputToolbar {...props} textInputStyle={{ color: '#000' }} />;
   };
 
   render() {
     return (
-      <>
+      <Container>
         {!socket.connected ? (
-          <Text>Connecting...</Text>
+          <CenterItems>
+            <ActivityIndicator
+              size={"large"}
+            />
+            <Text>Connecting...</Text>
+          </CenterItems>
         ) : (
           <>
             <ShowOnline>
@@ -99,14 +104,14 @@ class ChatScreen extends React.Component {
             />
           </>
         )}
-      </>
+      </Container>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const {userChat, appTheme} = state;
-  return {userChat, appTheme};
+  const { userChat, appTheme } = state;
+  return { userChat, appTheme };
 };
 
 export default connect(mapStateToProps)(ChatScreen);
@@ -125,3 +130,14 @@ const ShowOnline = styled.View`
 const Active = styled(Text)`
   font-family: 'Paladise Script';
 `;
+
+const Container = styled.View`
+  flex: 1;
+  padding:25px 0 0 0 ;
+`;
+
+const CenterItems = styled.View`
+  flex: 1;
+  justify-content : center;
+  align-items : center;
+`

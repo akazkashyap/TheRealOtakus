@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, Share } from 'react-native';
+import { Linking, Share, } from 'react-native';
 import { Paragraph, Button } from 'react-native-paper';
 import styled from 'styled-components/native';
 import VersionInfo from 'react-native-version-info';
@@ -108,8 +108,8 @@ const Social = styled.View`
   justify-content: flex-start;
 `;
 
-const Wrapper = styled.View`
-  padding: 5px;
+const Wrapper = styled.SafeAreaView`
+  padding: 30px;
   flex: 1;
   align-items: center;
   width: 100%;
